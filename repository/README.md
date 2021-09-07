@@ -1,2 +1,2 @@
 
-This folder is going to have all the repository service. 
+This folder has the .NET project  about the repository service of Awareness+
