@@ -6,7 +6,15 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using AuthenticationService.Data;
-using Domain_Model_App;
+using DomainModel;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.IdentityModel.JsonWebTokens;
+using static System.Net.WebRequestMethods;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Configuration;
+using System.Text;
+using System.Security.Claims;
+using Microsoft.IdentityModel.Tokens;
 
 namespace AuthenticationService.Controllers
 {
@@ -15,24 +23,20 @@ namespace AuthenticationService.Controllers
     public class AuthenticationsController : ControllerBase
     {
         private readonly AuthenticationServiceContext _context;
-
-        public AuthenticationsController(AuthenticationServiceContext context)
+        private readonly IConfiguration _configuration;
+      
+        public AuthenticationsController(AuthenticationServiceContext context, IConfiguration config)
         {
             _context = context;
-        }
-
-        // GET: api/Authentications
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Authentication>>> GetAuthentication()
-        {
-            return await _context.Authentication.ToListAsync();
+            _configuration = config;
         }
 
         // GET: api/Authentications/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Authentication>> GetAuthentication(int id)
+        [Authorize]
+        [HttpGet("{UserName}")]
+        public ActionResult<Authentication> GetAuthentication(String UserName)
         {
-            var authentication = await _context.Authentication.FindAsync(id);
+            var authentication = _context.Authentication.FirstOrDefault(i => i.UserName == UserName);
 
             if (authentication == null)
             {
@@ -83,6 +87,46 @@ namespace AuthenticationService.Controllers
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetAuthentication", new { id = authentication.AuthenticationID }, authentication);
+        }
+
+        [HttpPost("Auth")]
+        public ActionResult<Authentication> PostAuth(Authentication authentication)
+        {
+            authentication.EncryptPassword(authentication.Password);
+            var auth = _context.Authentication.FirstOrDefault(i => i.UserName == authentication.UserName);
+            if (auth == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                if (auth.Password.Equals(authentication.Password))
+                {
+                    var secretKey = _configuration.GetValue<String>("AppSecretKey");
+                    var key = Encoding.ASCII.GetBytes(secretKey);
+
+                    var claims = new ClaimsIdentity();
+                    claims.AddClaim(new Claim(ClaimTypes.NameIdentifier, authentication.UserName));
+
+                    var tokenDescriptor = new SecurityTokenDescriptor
+                    {
+                        Subject = claims,
+                        Expires = DateTime.UtcNow.AddHours(1),
+                        SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+                    };
+
+                    var tokenHandler = new JwtSecurityTokenHandler();
+                    var createdToken = tokenHandler.CreateToken(tokenDescriptor);
+                    string bearer_token = tokenHandler.WriteToken(createdToken);
+
+                    return Ok(bearer_token);
+                }
+                else
+                {
+                    return Unauthorized();
+                }
+            }
+            
         }
 
         // DELETE: api/Authentications/5
