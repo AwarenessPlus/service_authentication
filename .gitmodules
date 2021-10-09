@@ -1,0 +1,3 @@
+[submodule "service_authentication/model_domain"]
+	path = service_authentication/model_domain
+	url = https://github.com/AwarenessPlus/model_domain.git
