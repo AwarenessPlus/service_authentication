@@ -5,6 +5,14 @@
     <UserSecretsId>f8fddedb-699a-4a7e-bdac-f8344405cb21</UserSecretsId>
     <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
     <DockerfileContext>.</DockerfileContext>
+    <Nullable>enable</Nullable>
+    <ApplicationIcon />
+    <OutputType>Exe</OutputType>
+    <StartupObject>AuthenticationService.Program</StartupObject>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
 
   <ItemGroup>
@@ -27,7 +35,7 @@
 
   <ItemGroup>
     <Reference Include="DomainModel">
-      <HintPath>..\DomainModel\bin\Debug\net5.0\DomainModel.dll</HintPath>
+      <HintPath>..\..\..\model_domain\domain_model_app\DomainModel\bin\Debug\net5.0\DomainModel.dll</HintPath>
     </Reference>
   </ItemGroup>
 

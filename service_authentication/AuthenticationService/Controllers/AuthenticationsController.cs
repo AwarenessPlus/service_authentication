@@ -15,6 +15,8 @@ using Microsoft.Extensions.Configuration;
 using System.Text;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
+using AuthenticationService.DTO;
 
 namespace AuthenticationService.Controllers
 {
@@ -30,6 +32,15 @@ namespace AuthenticationService.Controllers
             _context = context;
             _configuration = config;
         }
+
+        // PING: api/Authentications
+
+        [HttpGet]
+        public ActionResult GetPing()
+        {
+            return Ok();
+        }
+
 
         // GET: api/Authentications/5
         [Authorize]
@@ -90,8 +101,11 @@ namespace AuthenticationService.Controllers
         }
 
         [HttpPost("Auth")]
-        public ActionResult<Authentication> PostAuth(Authentication authentication)
+        public ActionResult<Authentication> PostAuth(AuthDTO authDTO)
         {
+            Authentication authentication = new();
+            authentication.UserName = authDTO.UserName;
+            authentication.Password = authDTO.Password;
             authentication.EncryptPassword(authentication.Password);
             var auth = _context.Authentication.FirstOrDefault(i => i.UserName == authentication.UserName);
             if (auth == null)
@@ -119,7 +133,7 @@ namespace AuthenticationService.Controllers
                     var createdToken = tokenHandler.CreateToken(tokenDescriptor);
                     string bearer_token = tokenHandler.WriteToken(createdToken);
 
-                    return Ok(bearer_token);
+                    return Ok(JsonConvert.SerializeObject(bearer_token));
                 }
                 else
                 {

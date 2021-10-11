@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using AuthenticationService.Data;
 using DomainModel;
+using DatabaseServices.DTO;
+using Newtonsoft.Json;
 
 namespace AuthenticationService.Controllers
 {
@@ -75,14 +77,34 @@ namespace AuthenticationService.Controllers
 
         // POST: api/Medics
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Medic>> PostMedic(Medic medic)
+        [HttpPost("SignUp")]
+        public async Task<ActionResult<Medic>> PostMedic(MedicDTO medic)
         {
-            medic.AuthenticationData.EncryptPassword(medic.AuthenticationData.Password);
-            _context.Medic.Add(medic);
+            Medic newMedic = new();
+            User newUser = new();
+            Authentication newAuthentication = new();
+            newAuthentication.UserName = medic.Authentication.UserName;
+            newAuthentication.Password = medic.Authentication.Password;
+            if (_context.Authentication.Any(e => e.UserName == newAuthentication.UserName))
+            {
+                return Conflict(JsonConvert.SerializeObject("User Already Exist"));
+            }
+            string[] firsName = medic.FirstName.Split(' ');
+            string[] lastName = medic.LastName.Split(' ');
+            newUser.FirstName = firsName[0];
+            newUser.SecondName = firsName[1];
+            newUser.Surname = lastName[0];
+            newUser.LastName = lastName[1];
+            newUser.Age = medic.Age;
+            newMedic.MedicData = newUser;
+            newMedic.Rotation = medic.Rotation;
+            newMedic.Semester = medic.Semester;
+            newMedic.AuthenticationData = newAuthentication;
+            newMedic.AuthenticationData.EncryptPassword(newMedic.AuthenticationData.Password);
+            _context.Medic.Add(newMedic);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetMedic", new { id = medic.MedicID }, medic);
+            return CreatedAtAction("GetMedic", new { id = newMedic.MedicID }, newMedic);
         }
 
         // DELETE: api/Medics/5
