@@ -5,9 +5,22 @@
     <UserSecretsId>f8fddedb-699a-4a7e-bdac-f8344405cb21</UserSecretsId>
     <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
     <DockerfileContext>.</DockerfileContext>
+<<<<<<< Updated upstream
+=======
+    <Nullable>enable</Nullable>
+    <ApplicationIcon />
+    <OutputType>Exe</OutputType>
+    <StartupObject>AuthenticationService.Program</StartupObject>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+>>>>>>> Stashed changes
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Azure.Extensions.AspNetCore.Configuration.Secrets" Version="1.0.0" />
+    <PackageReference Include="Azure.Identity" Version="1.2.2" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.10">
@@ -27,7 +40,11 @@
 
   <ItemGroup>
     <Reference Include="DomainModel">
+<<<<<<< Updated upstream
       <HintPath>..\DomainModel\bin\Debug\net5.0\DomainModel.dll</HintPath>
+=======
+      <HintPath>..\DomainModel\DomainModel\bin\Debug\net5.0\DomainModel.dll</HintPath>
+>>>>>>> Stashed changes
     </Reference>
   </ItemGroup>
 
