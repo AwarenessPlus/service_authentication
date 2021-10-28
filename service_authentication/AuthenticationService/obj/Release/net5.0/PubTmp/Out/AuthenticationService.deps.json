@@ -33,11 +33,8 @@
     ".NETCoreApp,Version=v5.0": {
       "AuthenticationService/1.0.0": {
         "dependencies": {
-<<<<<<< HEAD
-=======
           "Azure.Extensions.AspNetCore.Configuration.Secrets": "1.0.0",
           "Azure.Identity": "1.2.2",
->>>>>>> feature/AuthenticationService
           "Microsoft.AspNetCore.Authentication.JwtBearer": "5.0.10",
           "Microsoft.EntityFrameworkCore": "5.0.10",
           "Microsoft.EntityFrameworkCore.Design": "5.0.10",
@@ -131,11 +128,7 @@
           "Microsoft.Extensions.Configuration.Abstractions.Reference": "5.0.0.0",
           "Microsoft.Extensions.Configuration.Binder": "5.0.0.0",
           "Microsoft.Extensions.Configuration.CommandLine": "5.0.0.0",
-<<<<<<< HEAD
-          "Microsoft.Extensions.Configuration": "5.0.0.0",
-=======
           "Microsoft.Extensions.Configuration.Reference": "5.0.0.0",
->>>>>>> feature/AuthenticationService
           "Microsoft.Extensions.Configuration.EnvironmentVariables": "5.0.0.0",
           "Microsoft.Extensions.Configuration.FileExtensions": "5.0.0.0",
           "Microsoft.Extensions.Configuration.Ini": "5.0.0.0",
@@ -181,11 +174,7 @@
           "mscorlib": "4.0.0.0",
           "netstandard": "2.1.0.0",
           "System.AppContext": "5.0.0.0",
-<<<<<<< HEAD
-          "System.Buffers": "5.0.0.0",
-=======
           "System.Buffers.Reference": "5.0.0.0",
->>>>>>> feature/AuthenticationService
           "System.Collections.Concurrent.Reference": "5.0.0.0",
           "System.Collections.Reference": "5.0.0.0",
           "System.Collections.Immutable.Reference": "5.0.0.0",
@@ -259,11 +248,7 @@
           "System.Net.WebSockets.Client": "5.0.0.0",
           "System.Net.WebSockets": "5.0.0.0",
           "System.Numerics": "4.0.0.0",
-<<<<<<< HEAD
-          "System.Numerics.Vectors": "5.0.0.0",
-=======
           "System.Numerics.Vectors.Reference": "5.0.0.0",
->>>>>>> feature/AuthenticationService
           "System.ObjectModel.Reference": "5.0.0.0",
           "System.Reflection.DispatchProxy": "5.0.0.0",
           "System.Reflection.Reference": "5.0.0.0",
@@ -312,11 +297,7 @@
           "System.Text.Encoding.Reference": "5.0.0.0",
           "System.Text.Encoding.Extensions.Reference": "5.0.0.0",
           "System.Text.Encodings.Web.Reference": "5.0.0.0",
-<<<<<<< HEAD
-          "System.Text.Json": "5.0.0.0",
-=======
           "System.Text.Json.Reference": "5.0.0.0",
->>>>>>> feature/AuthenticationService
           "System.Text.RegularExpressions.Reference": "5.0.0.0",
           "System.Threading.Channels": "5.0.0.0",
           "System.Threading.Reference": "5.0.0.0",
@@ -353,8 +334,6 @@
           "AuthenticationService.dll": {}
         }
       },
-<<<<<<< HEAD
-=======
       "Azure.Core/1.4.1": {
         "dependencies": {
           "Microsoft.Bcl.AsyncInterfaces": "1.1.1",
@@ -427,7 +406,6 @@
           "lib/netstandard2.0/Azure.Security.KeyVault.Secrets.dll": {}
         }
       },
->>>>>>> feature/AuthenticationService
       "Humanizer.Core/2.8.26": {
         "runtime": {
           "lib/netstandard2.0/Humanizer.dll": {
@@ -740,11 +718,7 @@
       "Microsoft.Data.SqlClient/2.0.1": {
         "dependencies": {
           "Microsoft.Data.SqlClient.SNI.runtime": "2.0.1",
-<<<<<<< HEAD
-          "Microsoft.Identity.Client": "4.14.0",
-=======
           "Microsoft.Identity.Client": "4.16.1",
->>>>>>> feature/AuthenticationService
           "Microsoft.IdentityModel.JsonWebTokens": "6.12.2",
           "Microsoft.IdentityModel.Protocols.OpenIdConnect": "6.7.1",
           "Microsoft.Win32.Registry": "4.7.0",
@@ -912,14 +886,11 @@
           "Microsoft.Extensions.Primitives": "5.0.0"
         }
       },
-<<<<<<< HEAD
-=======
       "Microsoft.Extensions.Configuration/2.1.0": {
         "dependencies": {
           "Microsoft.Extensions.Configuration.Abstractions": "5.0.0"
         }
       },
->>>>>>> feature/AuthenticationService
       "Microsoft.Extensions.Configuration.Abstractions/5.0.0": {
         "dependencies": {
           "Microsoft.Extensions.Primitives": "5.0.0"
@@ -956,11 +927,7 @@
         }
       },
       "Microsoft.Extensions.Primitives/5.0.0": {},
-<<<<<<< HEAD
-      "Microsoft.Identity.Client/4.14.0": {
-=======
       "Microsoft.Identity.Client/4.16.1": {
->>>>>>> feature/AuthenticationService
         "dependencies": {
           "Microsoft.CSharp": "4.7.0",
           "System.ComponentModel.TypeConverter": "4.3.0",
@@ -974,11 +941,6 @@
         },
         "runtime": {
           "lib/netcoreapp2.1/Microsoft.Identity.Client.dll": {
-<<<<<<< HEAD
-            "assemblyVersion": "4.14.0.0",
-            "fileVersion": "4.14.0.0"
-          }
-=======
             "assemblyVersion": "4.16.1.0",
             "fileVersion": "4.16.1.0"
           }
@@ -1000,7 +962,6 @@
         },
         "compile": {
           "lib/netcoreapp2.1/Microsoft.Identity.Client.Extensions.Msal.dll": {}
->>>>>>> feature/AuthenticationService
         }
       },
       "Microsoft.IdentityModel.JsonWebTokens/6.12.2": {
@@ -1297,10 +1258,7 @@
           "lib/net5.0/Swashbuckle.AspNetCore.SwaggerUI.dll": {}
         }
       },
-<<<<<<< HEAD
-=======
       "System.Buffers/4.5.0": {},
->>>>>>> feature/AuthenticationService
       "System.Collections/4.3.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "3.1.0",
@@ -1322,15 +1280,7 @@
           "System.Threading.Tasks": "4.3.0"
         }
       },
-<<<<<<< HEAD
-      "System.Collections.Immutable/5.0.0": {
-        "compile": {
-          "lib/netstandard2.0/System.Collections.Immutable.dll": {}
-        }
-      },
-=======
       "System.Collections.Immutable/5.0.0": {},
->>>>>>> feature/AuthenticationService
       "System.Collections.NonGeneric/4.3.0": {
         "dependencies": {
           "System.Diagnostics.Debug": "4.3.0",
@@ -1357,15 +1307,7 @@
           "System.Runtime": "4.3.0"
         }
       },
-<<<<<<< HEAD
-      "System.ComponentModel.Annotations/5.0.0": {
-        "compile": {
-          "ref/netstandard2.1/System.ComponentModel.Annotations.dll": {}
-        }
-      },
-=======
       "System.ComponentModel.Annotations/5.0.0": {},
->>>>>>> feature/AuthenticationService
       "System.ComponentModel.Primitives/4.3.0": {
         "dependencies": {
           "System.ComponentModel": "4.3.0",
@@ -1680,10 +1622,7 @@
           "System.Runtime.Handles": "4.3.0"
         }
       },
-<<<<<<< HEAD
-=======
       "System.Numerics.Vectors/4.5.0": {},
->>>>>>> feature/AuthenticationService
       "System.ObjectModel/4.3.0": {
         "dependencies": {
           "System.Collections": "4.3.0",
@@ -1769,15 +1708,7 @@
           "System.Runtime": "4.3.0"
         }
       },
-<<<<<<< HEAD
-      "System.Reflection.Metadata/5.0.0": {
-        "compile": {
-          "lib/netstandard2.0/System.Reflection.Metadata.dll": {}
-        }
-      },
-=======
       "System.Reflection.Metadata/5.0.0": {},
->>>>>>> feature/AuthenticationService
       "System.Reflection.Primitives/4.3.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "3.1.0",
@@ -1904,12 +1835,9 @@
             "assemblyVersion": "4.0.5.0",
             "fileVersion": "4.700.19.56404"
           }
-<<<<<<< HEAD
-=======
         },
         "compile": {
           "ref/netstandard2.0/System.Security.Cryptography.ProtectedData.dll": {}
->>>>>>> feature/AuthenticationService
         }
       },
       "System.Security.Permissions/4.7.0": {
@@ -1952,10 +1880,7 @@
         }
       },
       "System.Text.Encodings.Web/4.5.0": {},
-<<<<<<< HEAD
-=======
       "System.Text.Json/4.6.0": {},
->>>>>>> feature/AuthenticationService
       "System.Text.RegularExpressions/4.3.0": {
         "dependencies": {
           "System.Runtime": "4.3.0"
@@ -2559,11 +2484,7 @@
         },
         "compileOnly": true
       },
-<<<<<<< HEAD
-      "Microsoft.Extensions.Configuration/5.0.0.0": {
-=======
       "Microsoft.Extensions.Configuration.Reference/5.0.0.0": {
->>>>>>> feature/AuthenticationService
         "compile": {
           "Microsoft.Extensions.Configuration.dll": {}
         },
@@ -2839,11 +2760,7 @@
         },
         "compileOnly": true
       },
-<<<<<<< HEAD
-      "System.Buffers/5.0.0.0": {
-=======
       "System.Buffers.Reference/5.0.0.0": {
->>>>>>> feature/AuthenticationService
         "compile": {
           "System.Buffers.dll": {}
         },
@@ -3287,11 +3204,7 @@
         },
         "compileOnly": true
       },
-<<<<<<< HEAD
-      "System.Numerics.Vectors/5.0.0.0": {
-=======
       "System.Numerics.Vectors.Reference/5.0.0.0": {
->>>>>>> feature/AuthenticationService
         "compile": {
           "System.Numerics.Vectors.dll": {}
         },
@@ -3585,11 +3498,7 @@
         },
         "compileOnly": true
       },
-<<<<<<< HEAD
-      "System.Text.Json/5.0.0.0": {
-=======
       "System.Text.Json.Reference/5.0.0.0": {
->>>>>>> feature/AuthenticationService
         "compile": {
           "System.Text.Json.dll": {}
         },
@@ -3771,8 +3680,6 @@
       "serviceable": false,
       "sha512": ""
     },
-<<<<<<< HEAD
-=======
     "Azure.Core/1.4.1": {
       "type": "package",
       "serviceable": true,
@@ -3801,7 +3708,6 @@
       "path": "azure.security.keyvault.secrets/4.0.1",
       "hashPath": "azure.security.keyvault.secrets.4.0.1.nupkg.sha512"
     },
->>>>>>> feature/AuthenticationService
     "Humanizer.Core/2.8.26": {
       "type": "package",
       "serviceable": true,
@@ -3984,8 +3890,6 @@
       "path": "microsoft.extensions.caching.memory/5.0.0",
       "hashPath": "microsoft.extensions.caching.memory.5.0.0.nupkg.sha512"
     },
-<<<<<<< HEAD
-=======
     "Microsoft.Extensions.Configuration/2.1.0": {
       "type": "package",
       "serviceable": true,
@@ -3993,7 +3897,6 @@
       "path": "microsoft.extensions.configuration/2.1.0",
       "hashPath": "microsoft.extensions.configuration.2.1.0.nupkg.sha512"
     },
->>>>>>> feature/AuthenticationService
     "Microsoft.Extensions.Configuration.Abstractions/5.0.0": {
       "type": "package",
       "serviceable": true,
@@ -4043,14 +3946,6 @@
       "path": "microsoft.extensions.primitives/5.0.0",
       "hashPath": "microsoft.extensions.primitives.5.0.0.nupkg.sha512"
     },
-<<<<<<< HEAD
-    "Microsoft.Identity.Client/4.14.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-Etqux6Zuuv1yEN4UwKbAn6EZv0Rooc+vM4N9z7gxmeT7dyoKlXIRN44DQPzD9LV1CW0KsTVqH+2B42p1NKqPlQ==",
-      "path": "microsoft.identity.client/4.14.0",
-      "hashPath": "microsoft.identity.client.4.14.0.nupkg.sha512"
-=======
     "Microsoft.Identity.Client/4.16.1": {
       "type": "package",
       "serviceable": true,
@@ -4064,7 +3959,6 @@
       "sha512": "sha512-FaF6/Rqg5h1c3/yYutIGMC4FFqvYHcx+ccdYiYeMlsB4yK/Qdkr/nWKbuoYCjg6Bp/ze7ZZhaXP6ZxItwaqRhQ==",
       "path": "microsoft.identity.client.extensions.msal/2.12.0",
       "hashPath": "microsoft.identity.client.extensions.msal.2.12.0.nupkg.sha512"
->>>>>>> feature/AuthenticationService
     },
     "Microsoft.IdentityModel.JsonWebTokens/6.12.2": {
       "type": "package",
@@ -4241,8 +4135,6 @@
       "path": "swashbuckle.aspnetcore.swaggerui/6.2.2",
       "hashPath": "swashbuckle.aspnetcore.swaggerui.6.2.2.nupkg.sha512"
     },
-<<<<<<< HEAD
-=======
     "System.Buffers/4.5.0": {
       "type": "package",
       "serviceable": true,
@@ -4250,7 +4142,6 @@
       "path": "system.buffers/4.5.0",
       "hashPath": "system.buffers.4.5.0.nupkg.sha512"
     },
->>>>>>> feature/AuthenticationService
     "System.Collections/4.3.0": {
       "type": "package",
       "serviceable": true,
@@ -4475,8 +4366,6 @@
       "path": "system.net.primitives/4.3.0",
       "hashPath": "system.net.primitives.4.3.0.nupkg.sha512"
     },
-<<<<<<< HEAD
-=======
     "System.Numerics.Vectors/4.5.0": {
       "type": "package",
       "serviceable": true,
@@ -4484,7 +4373,6 @@
       "path": "system.numerics.vectors/4.5.0",
       "hashPath": "system.numerics.vectors.4.5.0.nupkg.sha512"
     },
->>>>>>> feature/AuthenticationService
     "System.ObjectModel/4.3.0": {
       "type": "package",
       "serviceable": true,
@@ -4709,8 +4597,6 @@
       "path": "system.text.encodings.web/4.5.0",
       "hashPath": "system.text.encodings.web.4.5.0.nupkg.sha512"
     },
-<<<<<<< HEAD
-=======
     "System.Text.Json/4.6.0": {
       "type": "package",
       "serviceable": true,
@@ -4718,7 +4604,6 @@
       "path": "system.text.json/4.6.0",
       "hashPath": "system.text.json.4.6.0.nupkg.sha512"
     },
->>>>>>> feature/AuthenticationService
     "System.Text.RegularExpressions/4.3.0": {
       "type": "package",
       "serviceable": true,
@@ -5202,11 +5087,7 @@
       "serviceable": false,
       "sha512": ""
     },
-<<<<<<< HEAD
-    "Microsoft.Extensions.Configuration/5.0.0.0": {
-=======
     "Microsoft.Extensions.Configuration.Reference/5.0.0.0": {
->>>>>>> feature/AuthenticationService
       "type": "referenceassembly",
       "serviceable": false,
       "sha512": ""
@@ -5436,11 +5317,7 @@
       "serviceable": false,
       "sha512": ""
     },
-<<<<<<< HEAD
-    "System.Buffers/5.0.0.0": {
-=======
     "System.Buffers.Reference/5.0.0.0": {
->>>>>>> feature/AuthenticationService
       "type": "referenceassembly",
       "serviceable": false,
       "sha512": ""
@@ -5810,11 +5687,7 @@
       "serviceable": false,
       "sha512": ""
     },
-<<<<<<< HEAD
-    "System.Numerics.Vectors/5.0.0.0": {
-=======
     "System.Numerics.Vectors.Reference/5.0.0.0": {
->>>>>>> feature/AuthenticationService
       "type": "referenceassembly",
       "serviceable": false,
       "sha512": ""
@@ -6059,11 +5932,7 @@
       "serviceable": false,
       "sha512": ""
     },
-<<<<<<< HEAD
-    "System.Text.Json/5.0.0.0": {
-=======
     "System.Text.Json.Reference/5.0.0.0": {
->>>>>>> feature/AuthenticationService
       "type": "referenceassembly",
       "serviceable": false,
       "sha512": ""

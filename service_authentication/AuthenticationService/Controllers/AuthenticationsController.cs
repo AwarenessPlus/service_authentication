@@ -11,17 +11,9 @@ using Microsoft.Extensions.Configuration;
 using System.Text;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
-<<<<<<< HEAD
-using Newtonsoft.Json;
-using AuthenticationService.DTO;
-=======
-<<<<<<< Updated upstream
-=======
 using Newtonsoft.Json;
 using AuthenticationService.DTO;
 using DatabaseServices.DTO;
->>>>>>> Stashed changes
->>>>>>> feature/AuthenticationService
 
 namespace AuthenticationService.Controllers
 {
@@ -38,21 +30,6 @@ namespace AuthenticationService.Controllers
             _configuration = config;
         }
 
-<<<<<<< HEAD
-        // PING: api/Authentications
-
-        [HttpGet]
-        public ActionResult GetPing()
-        {
-            return Ok();
-        }
-
-
-=======
-<<<<<<< Updated upstream
->>>>>>> feature/AuthenticationService
-        // GET: api/Authentications/5
-=======
         // PING: api/Authentications
 
         [HttpGet("ping")]
@@ -62,7 +39,6 @@ namespace AuthenticationService.Controllers
         }
 
         // PUT: api/Authentications/{UserName}
->>>>>>> Stashed changes
         [Authorize]
         [HttpPut("{UserName}")]
         public async Task<IActionResult> PutAuthentication(string UserName, AuthDTO authentication)

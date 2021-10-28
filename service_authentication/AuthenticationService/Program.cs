@@ -22,24 +22,12 @@ namespace AuthenticationService
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webHostBuilder =>
                 {
-<<<<<<< HEAD
-                    webHostBuilder
-                    .UseKestrel()
-                    .UseContentRoot(Directory.GetCurrentDirectory())
-                    .UseIISIntegration()
-                    .UseStartup<Startup>();
-=======
-<<<<<<< Updated upstream
-                    webBuilder.UseStartup<Startup>();
-=======
                     webHostBuilder
                     .UseKestrel()
                     .UseContentRoot(Directory.GetCurrentDirectory())
                     .UseIIS()
                     .UseIISIntegration()
                     .UseStartup<Startup>();
->>>>>>> Stashed changes
->>>>>>> feature/AuthenticationService
                 });
     }
 }

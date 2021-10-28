@@ -5,8 +5,6 @@
     <UserSecretsId>f8fddedb-699a-4a7e-bdac-f8344405cb21</UserSecretsId>
     <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
     <DockerfileContext>.</DockerfileContext>
-<<<<<<< Updated upstream
-=======
     <Nullable>enable</Nullable>
     <ApplicationIcon />
     <OutputType>Exe</OutputType>
@@ -15,7 +13,6 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <PlatformTarget>AnyCPU</PlatformTarget>
->>>>>>> Stashed changes
   </PropertyGroup>
 
   <ItemGroup>
@@ -40,11 +37,7 @@
 
   <ItemGroup>
     <Reference Include="DomainModel">
-<<<<<<< Updated upstream
-      <HintPath>..\DomainModel\bin\Debug\net5.0\DomainModel.dll</HintPath>
-=======
       <HintPath>..\DomainModel\DomainModel\bin\Debug\net5.0\DomainModel.dll</HintPath>
->>>>>>> Stashed changes
     </Reference>
   </ItemGroup>
 

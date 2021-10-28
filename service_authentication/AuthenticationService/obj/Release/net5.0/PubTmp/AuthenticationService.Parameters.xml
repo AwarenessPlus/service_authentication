@@ -1,11 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <parameters>
-<<<<<<< HEAD
-  <parameter name="IIS Web Application Name" description="" value="AwarenessPlus" tags="IisApp">
-    <parameterEntry kind="ProviderPath" scope="IisApp" match="^E:\\Github\\service_authentication\\service_authentication\\AuthenticationService\\obj\\Release\\net5\.0\\PubTmp\\Out\\$" />
-=======
   <parameter name="IIS Web Application Name" description="" value="AuthenticationServiceAwareness" tags="IisApp">
     <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\maesl\\Documents\\ProyectoPersonal\\AuthenticationService\\obj\\Release\\net5\.0\\PubTmp\\Out\\$" />
->>>>>>> feature/AuthenticationService
   </parameter>
 </parameters>

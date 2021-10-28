@@ -136,8 +136,6 @@ E:\Github\service_authentication\service_authentication\AuthenticationService\ob
 E:\Github\service_authentication\service_authentication\AuthenticationService\obj\Release\net5.0\ref\AuthenticationService.dll
 E:\Github\service_authentication\service_authentication\AuthenticationService\obj\Release\net5.0\AuthenticationService.pdb
 E:\Github\service_authentication\service_authentication\AuthenticationService\obj\Release\net5.0\AuthenticationService.genruntimeconfig.cache
-<<<<<<< HEAD
-=======
 C:\Users\maesl\Documents\ProyectoPersonal\AuthenticationService\bin\Release\net5.0\appsettings.Development.json
 C:\Users\maesl\Documents\ProyectoPersonal\AuthenticationService\bin\Release\net5.0\appsettings.json
 C:\Users\maesl\Documents\ProyectoPersonal\AuthenticationService\bin\Release\net5.0\AuthenticationService.exe
@@ -281,4 +279,3 @@ C:\Users\maesl\Documents\ProyectoPersonal\AuthenticationService\bin\Release\net5
 C:\Users\maesl\Documents\ProyectoPersonal\AuthenticationService\bin\Release\net5.0\Azure.Identity.dll
 C:\Users\maesl\Documents\ProyectoPersonal\AuthenticationService\bin\Release\net5.0\Azure.Security.KeyVault.Secrets.dll
 C:\Users\maesl\Documents\ProyectoPersonal\AuthenticationService\bin\Release\net5.0\Microsoft.Identity.Client.Extensions.Msal.dll
->>>>>>> feature/AuthenticationService

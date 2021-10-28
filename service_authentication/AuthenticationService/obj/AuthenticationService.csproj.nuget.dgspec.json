@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Github\\service_authentication\\service_authentication\\AuthenticationService\\AuthenticationService.csproj": {}
+    "C:\\Users\\maesl\\Documents\\ProyectoPersonal\\AuthenticationService\\AuthenticationService.csproj": {}
   },
   "projects": {
-    "E:\\Github\\service_authentication\\service_authentication\\AuthenticationService\\AuthenticationService.csproj": {
+    "C:\\Users\\maesl\\Documents\\ProyectoPersonal\\AuthenticationService\\AuthenticationService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Github\\service_authentication\\service_authentication\\AuthenticationService\\AuthenticationService.csproj",
+        "projectUniqueName": "C:\\Users\\maesl\\Documents\\ProyectoPersonal\\AuthenticationService\\AuthenticationService.csproj",
         "projectName": "AuthenticationService",
-        "projectPath": "E:\\Github\\service_authentication\\service_authentication\\AuthenticationService\\AuthenticationService.csproj",
-        "packagesPath": "C:\\Users\\aulasingenieria\\.nuget\\packages\\",
-        "outputPath": "E:\\Github\\service_authentication\\service_authentication\\AuthenticationService\\obj\\",
+        "projectPath": "C:\\Users\\maesl\\Documents\\ProyectoPersonal\\AuthenticationService\\AuthenticationService.csproj",
+        "packagesPath": "C:\\Users\\maesl\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\maesl\\Documents\\ProyectoPersonal\\AuthenticationService\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\aulasingenieria\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\maesl\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -111,7 +111,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }
