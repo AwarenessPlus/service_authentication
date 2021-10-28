@@ -136,6 +136,11 @@ C:\Users\maesl\Documents\ProyectoPersonal\AuthenticationService\obj\Debug\net5.0
 C:\Users\maesl\Documents\ProyectoPersonal\AuthenticationService\obj\Debug\net5.0\AuthenticationService.pdb
 C:\Users\maesl\Documents\ProyectoPersonal\AuthenticationService\obj\Debug\net5.0\AuthenticationService.genruntimeconfig.cache
 C:\Users\maesl\Documents\ProyectoPersonal\AuthenticationService\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+<<<<<<< HEAD
+=======
+<<<<<<< Updated upstream
+=======
+>>>>>>> feature/AuthenticationService
 E:\Github\service_authentication\service_authentication\AuthenticationService\obj\Debug\net5.0\AuthenticationService.dll
 E:\Github\service_authentication\service_authentication\AuthenticationService\obj\Debug\net5.0\ref\AuthenticationService.dll
 E:\Github\service_authentication\service_authentication\AuthenticationService\obj\Debug\net5.0\AuthenticationService.pdb
@@ -274,3 +279,12 @@ E:\Github\service_authentication\service_authentication\AuthenticationService\ob
 E:\Github\service_authentication\service_authentication\AuthenticationService\obj\Debug\net5.0\AuthenticationService.RazorTargetAssemblyInfo.cache
 E:\Github\service_authentication\service_authentication\AuthenticationService\obj\Debug\net5.0\AuthenticationService.csproj.CopyComplete
 E:\Github\service_authentication\service_authentication\AuthenticationService\obj\Debug\net5.0\AuthenticationService.genruntimeconfig.cache
+<<<<<<< HEAD
+=======
+C:\Users\maesl\Documents\ProyectoPersonal\AuthenticationService\bin\Debug\net5.0\Azure.Core.dll
+C:\Users\maesl\Documents\ProyectoPersonal\AuthenticationService\bin\Debug\net5.0\Azure.Extensions.AspNetCore.Configuration.Secrets.dll
+C:\Users\maesl\Documents\ProyectoPersonal\AuthenticationService\bin\Debug\net5.0\Azure.Identity.dll
+C:\Users\maesl\Documents\ProyectoPersonal\AuthenticationService\bin\Debug\net5.0\Azure.Security.KeyVault.Secrets.dll
+C:\Users\maesl\Documents\ProyectoPersonal\AuthenticationService\bin\Debug\net5.0\Microsoft.Identity.Client.Extensions.Msal.dll
+>>>>>>> Stashed changes
+>>>>>>> feature/AuthenticationService

@@ -1,8 +1,13 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
+<<<<<<< HEAD
       "C:\\Users\\aulasingenieria\\.dotnet\\store\\|arch|\\|tfm|",
       "C:\\Users\\aulasingenieria\\.nuget\\packages",
+=======
+      "C:\\Users\\maesl\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\maesl\\.nuget\\packages",
+>>>>>>> feature/AuthenticationService
       "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
     ]
   }

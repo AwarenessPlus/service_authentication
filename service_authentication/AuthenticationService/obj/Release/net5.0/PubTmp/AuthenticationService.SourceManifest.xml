@@ -1,4 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <sitemanifest>
+<<<<<<< HEAD
   <IisApp path="E:\Github\service_authentication\service_authentication\AuthenticationService\obj\Release\net5.0\PubTmp\Out\" />
+=======
+  <IisApp path="C:\Users\maesl\Documents\ProyectoPersonal\AuthenticationService\obj\Release\net5.0\PubTmp\Out\" />
+>>>>>>> feature/AuthenticationService
 </sitemanifest>

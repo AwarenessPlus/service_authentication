@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Azure.Identity;
 
 namespace AuthenticationService
 {
@@ -21,11 +22,24 @@ namespace AuthenticationService
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webHostBuilder =>
                 {
+<<<<<<< HEAD
                     webHostBuilder
                     .UseKestrel()
                     .UseContentRoot(Directory.GetCurrentDirectory())
                     .UseIISIntegration()
                     .UseStartup<Startup>();
+=======
+<<<<<<< Updated upstream
+                    webBuilder.UseStartup<Startup>();
+=======
+                    webHostBuilder
+                    .UseKestrel()
+                    .UseContentRoot(Directory.GetCurrentDirectory())
+                    .UseIIS()
+                    .UseIISIntegration()
+                    .UseStartup<Startup>();
+>>>>>>> Stashed changes
+>>>>>>> feature/AuthenticationService
                 });
     }
 }

@@ -3,4 +3,18 @@
 https://go.microsoft.com/fwlink/?LinkID=208121. 
 -->
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<<<<<<< HEAD
 </Project>
+=======
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>C:\Users\maesl\Documents\ProyectoPersonal\AuthenticationService\bin\Release\net5.0\publish\</_PublishTargetUrl>
+    <History>True|2021-10-27T18:28:46.3653544Z;</History>
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="AuthenticationServiceContext">
+      <Value>Server=tcp:awarernessdatabase.database.windows.net,1433%3bInitial Catalog=AwarenessDatabase%3bPersist Security Info=False%3bUser ID=marlon_linares16%3bPassword=Awarenessplus01%3bMultipleActiveResultSets=False%3bEncrypt=True%3bTrustServerCertificate=False%3bConnection Timeout=30</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>
+>>>>>>> feature/AuthenticationService

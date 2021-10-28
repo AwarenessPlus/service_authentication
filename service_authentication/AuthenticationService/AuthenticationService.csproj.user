@@ -12,6 +12,11 @@
     <WebStackScaffolding_LayoutPageFile />
     <WebStackScaffolding_DbContextTypeFullName>AuthenticationService.Data.AuthenticationServiceContext</WebStackScaffolding_DbContextTypeFullName>
     <WebStackScaffolding_IsAsyncSelected>False</WebStackScaffolding_IsAsyncSelected>
+<<<<<<< Updated upstream
+    <NameOfLastUsedPublishProfile>C:\Users\maesl\Documents\ProyectoPersonal\AuthenticationService\Properties\PublishProfiles\registry.hub.docker.com_marlonlinares16.pubxml</NameOfLastUsedPublishProfile>
+=======
+    <NameOfLastUsedPublishProfile>C:\Users\maesl\Documents\ProyectoPersonal\AuthenticationService\Properties\PublishProfiles\AuthenticationServiceAwareness - Web Deploy.pubxml</NameOfLastUsedPublishProfile>
+>>>>>>> Stashed changes
     <NameOfLastUsedPublishProfile>E:\Github\service_authentication\service_authentication\AuthenticationService\Properties\PublishProfiles\IISProfile.pubxml</NameOfLastUsedPublishProfile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
