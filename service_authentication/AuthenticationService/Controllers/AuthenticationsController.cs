@@ -1,20 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using AuthenticationService.Data;
 using DomainModel;
 using System.IdentityModel.Tokens.Jwt;
-using Microsoft.IdentityModel.JsonWebTokens;
-using static System.Net.WebRequestMethods;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Configuration;
 using System.Text;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
+using AuthenticationService.DTO;
+using DatabaseServices.DTO;
 
 namespace AuthenticationService.Controllers
 {
@@ -31,32 +30,37 @@ namespace AuthenticationService.Controllers
             _configuration = config;
         }
 
-        // GET: api/Authentications/5
-        [Authorize]
-        [HttpGet("{UserName}")]
-        public ActionResult<Authentication> GetAuthentication(String UserName)
+        // PING: api/Authentications
+
+        [HttpGet("ping")]
+        public ActionResult GetPing()
         {
-            var authentication = _context.Authentication.FirstOrDefault(i => i.UserName == UserName);
-
-            if (authentication == null)
-            {
-                return NotFound();
-            }
-
-            return authentication;
+            return Ok();
         }
 
-        // PUT: api/Authentications/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutAuthentication(int id, Authentication authentication)
+        // PUT: api/Authentications/{UserName}
+        [Authorize]
+        [HttpPut("{UserName}")]
+        public async Task<IActionResult> PutAuthentication(string UserName, AuthDTO authentication)
         {
-            if (id != authentication.AuthenticationID)
+            if (UserName != authentication.UserName)
             {
                 return BadRequest();
             }
 
-            _context.Entry(authentication).State = EntityState.Modified;
+            var authentication1 = _context.Authentication.First(e => e.UserName == authentication.UserName);
+            
+            if (authentication1 == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                authentication1.Password = authentication.Password;
+                authentication1.EncryptPassword(authentication1.Password);
+            }
+
+            _context.Entry(authentication1).State = EntityState.Modified;
 
             try
             {
@@ -64,7 +68,7 @@ namespace AuthenticationService.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AuthenticationExists(id))
+                if (!AuthenticationExists(UserName))
                 {
                     return NotFound();
                 }
@@ -77,21 +81,14 @@ namespace AuthenticationService.Controllers
             return NoContent();
         }
 
-        // POST: api/Authentications
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Authentication>> PostAuthentication(Authentication authentication)
-        {
-            authentication.EncryptPassword(authentication.Password);
-            _context.Authentication.Add(authentication);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetAuthentication", new { id = authentication.AuthenticationID }, authentication);
-        }
+        // POST: api/Authentications/auth
 
         [HttpPost("Auth")]
-        public ActionResult<Authentication> PostAuth(Authentication authentication)
+        public ActionResult<Authentication> PostAuth(AuthDTO authDTO)
         {
+            Authentication authentication = new();
+            authentication.UserName = authDTO.UserName;
+            authentication.Password = authDTO.Password;
             authentication.EncryptPassword(authentication.Password);
             var auth = _context.Authentication.FirstOrDefault(i => i.UserName == authentication.UserName);
             if (auth == null)
@@ -119,7 +116,7 @@ namespace AuthenticationService.Controllers
                     var createdToken = tokenHandler.CreateToken(tokenDescriptor);
                     string bearer_token = tokenHandler.WriteToken(createdToken);
 
-                    return Ok(bearer_token);
+                    return Ok(JsonConvert.SerializeObject(bearer_token));
                 }
                 else
                 {
@@ -129,11 +126,13 @@ namespace AuthenticationService.Controllers
             
         }
 
-        // DELETE: api/Authentications/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAuthentication(int id)
+        // DELETE: api/Authentications/{UserName}
+
+        [Authorize]
+        [HttpDelete("{UserName}")]
+        public async Task<IActionResult> DeleteAuthentication(string UserName)
         {
-            var authentication = await _context.Authentication.FindAsync(id);
+            var authentication = _context.Authentication.First(e => e.UserName == UserName);
             if (authentication == null)
             {
                 return NotFound();
@@ -145,9 +144,59 @@ namespace AuthenticationService.Controllers
             return NoContent();
         }
 
-        private bool AuthenticationExists(int id)
+        // POST: api/Authentications/SignUp
+
+        [HttpPost("SignUp")]
+        public async Task<ActionResult<Medic>> PostMedic(MedicDTO medic)
         {
-            return _context.Authentication.Any(e => e.AuthenticationID == id);
+            Medic newMedic = new();
+            User newUser = new();
+            Authentication newAuthentication = new();
+            newAuthentication.UserName = medic.Authentication.UserName;
+            newAuthentication.Password = medic.Authentication.Password;
+            if (_context.Authentication.Any(e => e.UserName == newAuthentication.UserName))
+            {
+                return Conflict(JsonConvert.SerializeObject("User Already Exist"));
+            }
+            string[] firsName = medic.FirstName.Split(' ');
+            string[] lastName = medic.LastName.Split(' ');
+            newUser.FirstName = firsName[0];
+            newUser.SecondName = firsName[1];
+            newUser.Surname = lastName[0];
+            newUser.LastName = lastName[1];
+            newUser.Age = medic.Age;
+            newMedic.MedicData = newUser;
+            newMedic.Rotation = medic.Rotation;
+            newMedic.Semester = medic.Semester;
+            newMedic.AuthenticationData = newAuthentication;
+            newMedic.AuthenticationData.EncryptPassword(newMedic.AuthenticationData.Password);
+            _context.Medic.Add(newMedic);
+            await _context.SaveChangesAsync();
+            //Construct The Bearer JSON Web Token
+            var secretKey = _configuration.GetValue<String>("AppSecretKey");
+            var key = Encoding.ASCII.GetBytes(secretKey);
+
+            var claims = new ClaimsIdentity();
+            claims.AddClaim(new Claim(ClaimTypes.NameIdentifier, newMedic.AuthenticationData.UserName));
+
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = claims,
+                Expires = DateTime.UtcNow.AddHours(1),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            };
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var createdToken = tokenHandler.CreateToken(tokenDescriptor);
+            string bearer_token = tokenHandler.WriteToken(createdToken);
+
+            return Ok(JsonConvert.SerializeObject(bearer_token));
+
+        }
+
+        private bool AuthenticationExists(string UserName)
+        {
+            return _context.Authentication.Any(e => e.UserName == UserName);
         }
     }
 }
