@@ -26,6 +26,17 @@ namespace AuthenticationService
         {
             var key = Encoding.ASCII.GetBytes(Configuration.GetValue<string>("AppSecretKey"));
 
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.WithOrigins("https://authenticationserviceawareness.azurewebsites.net/")
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowAnyOrigin();
+                    });
+            });
             services.AddAuthentication(x =>
             {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -61,7 +72,9 @@ namespace AuthenticationService
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "AuthenticationService v1"));
             }
 
-            app.UseHttpsRedirection();
+            app.UseCors();
+
+
 
             app.UseRouting();
 

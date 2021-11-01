@@ -17,5 +17,6 @@ namespace AuthenticationService.Data
         public DbSet<DomainModel.Authentication> Authentication { get; set; }
 
         public DbSet<DomainModel.Medic> Medic { get; set; }
+
     }
 }
