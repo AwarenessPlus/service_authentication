@@ -9,6 +9,18 @@
       "type": "mssql.azure",
       "connectionId": "ConnectionStrings:AuthenticationServiceContext",
       "secretStore": "AzureAppSettings"
+    },
+    "secrets1": {
+      "type": "secrets",
+      "connectionId": "",
+      "suggestion": "true",
+      "ignored": "true"
+    },
+    "identityapp1": {
+      "type": "identityapp",
+      "connectionId": "",
+      "suggestion": "true",
+      "ignored": "true"
     }
   }
 }

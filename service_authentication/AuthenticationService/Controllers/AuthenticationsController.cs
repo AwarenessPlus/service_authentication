@@ -13,7 +13,6 @@ using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using AuthenticationService.DTO;
-using DatabaseServices.DTO;
 
 namespace AuthenticationService.Controllers
 {
@@ -35,7 +34,7 @@ namespace AuthenticationService.Controllers
         [HttpGet("ping")]
         public ActionResult GetPing()
         {
-            return Ok();
+            return Ok(JsonConvert.SerializeObject("ping"));
         }
 
         // PUT: api/Authentications/{UserName}
@@ -123,11 +122,9 @@ namespace AuthenticationService.Controllers
                     return Unauthorized();
                 }
             }
-            
         }
 
         // DELETE: api/Authentications/{UserName}
-
         [Authorize]
         [HttpDelete("{UserName}")]
         public async Task<IActionResult> DeleteAuthentication(string UserName)
@@ -147,7 +144,7 @@ namespace AuthenticationService.Controllers
         // POST: api/Authentications/SignUp
 
         [HttpPost("SignUp")]
-        public async Task<ActionResult<Medic>> PostMedic(MedicDTO medic)
+        public async Task<ActionResult<Medic>> PostMedic(MedicSignUpDTO medic)
         {
             Medic newMedic = new();
             User newUser = new();
@@ -164,7 +161,7 @@ namespace AuthenticationService.Controllers
             newUser.SecondName = firsName[1];
             newUser.Surname = lastName[0];
             newUser.LastName = lastName[1];
-            newUser.Age = medic.Age;
+            newUser.BirthDate = medic.BirthDate;
             newMedic.MedicData = newUser;
             newMedic.Rotation = medic.Rotation;
             newMedic.Semester = medic.Semester;
