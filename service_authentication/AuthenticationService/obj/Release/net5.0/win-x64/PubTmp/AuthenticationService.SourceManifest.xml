@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sitemanifest>
+  <IisApp path="E:\Github\service_authentication\service_authentication\AuthenticationService\obj\Release\net5.0\win-x64\PubTmp\Out\" />
+  <dbfullsql path="E:\Github\service_authentication\service_authentication\AuthenticationService\obj\Release\net5.0\win-x64\PubTmp\EFSQLScripts\AuthenticationService.Data.AuthenticationServiceContext.sql" />
+</sitemanifest>

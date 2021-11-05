@@ -1,0 +1,7 @@
+E:\Github\service_authentication\service_authentication\AuthenticationService\obj\Release\net5.0\win-x64\PubTmp\Out\appsettings.Development.json
+E:\Github\service_authentication\service_authentication\AuthenticationService\obj\Release\net5.0\win-x64\PubTmp\Out\appsettings.json
+E:\Github\service_authentication\service_authentication\AuthenticationService\obj\Release\net5.0\win-x64\PubTmp\Out\AuthenticationService.pdb
+E:\Github\service_authentication\service_authentication\AuthenticationService\obj\Release\net5.0\win-x64\PubTmp\Out\Microsoft.Data.SqlClient.SNI.dll
+E:\Github\service_authentication\service_authentication\AuthenticationService\obj\Release\net5.0\win-x64\PubTmp\Out\Microsoft.Data.SqlClient.SNI.pdb
+E:\Github\service_authentication\service_authentication\AuthenticationService\obj\Release\net5.0\win-x64\PubTmp\Out\DomainModel.pdb
+E:\Github\service_authentication\service_authentication\AuthenticationService\obj\Release\net5.0\win-x64\PubTmp\Out\AuthenticationService.exe

@@ -1,0 +1,247 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "AuthenticationService",
+    "version": "v1"
+  },
+  "paths": {
+    "/api/Authentications/ping": {
+      "get": {
+        "tags": [
+          "Authentications"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Authentications/{UserName}": {
+      "put": {
+        "tags": [
+          "Authentications"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "UserName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/AuthDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Authentications"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "UserName",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Authentications/Auth": {
+      "post": {
+        "tags": [
+          "Authentications"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/AuthDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/Authentication"
+            }
+          }
+        }
+      }
+    },
+    "/api/Authentications/SignUp": {
+      "post": {
+        "tags": [
+          "Authentications"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/MedicSignUpDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/Medic"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "AuthDTO": {
+      "type": "object",
+      "properties": {
+        "userName": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "Authentication": {
+      "type": "object",
+      "properties": {
+        "userName": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "authenticationID": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "Medic": {
+      "type": "object",
+      "properties": {
+        "medicID": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "medicData": {
+          "$ref": "#/definitions/User"
+        },
+        "authenticationData": {
+          "$ref": "#/definitions/Authentication"
+        },
+        "rotation": {
+          "type": "string"
+        },
+        "semester": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "userID": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "authenticationID": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "MedicSignUpDTO": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "semester": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "rotation": {
+          "type": "string"
+        },
+        "authentication": {
+          "$ref": "#/definitions/AuthDTO"
+        },
+        "birthDate": {
+          "format": "date-time",
+          "type": "string"
+        }
+      }
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "userID": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "secondName": {
+          "type": "string"
+        },
+        "surname": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "birthDate": {
+          "format": "date-time",
+          "type": "string"
+        }
+      }
+    }
+  }
+}
