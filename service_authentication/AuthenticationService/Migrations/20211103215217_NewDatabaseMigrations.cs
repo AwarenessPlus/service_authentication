@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AuthenticationService.Migrations
 {
@@ -12,8 +13,8 @@ namespace AuthenticationService.Migrations
                 {
                     AuthenticationID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -26,18 +27,18 @@ namespace AuthenticationService.Migrations
                 {
                     UserID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     SecondName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Surname = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Age = table.Column<int>(type: "int", nullable: false)
+                    Surname = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_User", x => x.UserID);
                 });
 
-           migrationBuilder.CreateTable(
+            migrationBuilder.CreateTable(
                 name: "Medic",
                 columns: table => new
                 {
@@ -99,7 +100,8 @@ namespace AuthenticationService.Migrations
                     Asa = table.Column<int>(type: "int", nullable: false),
                     MedicID = table.Column<int>(type: "int", nullable: false),
                     _pacientID = table.Column<int>(type: "int", nullable: false),
-                    PacientID = table.Column<int>(type: "int", nullable: false)
+                    PacientID = table.Column<int>(type: "int", nullable: false),
+                    ProcedureDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                 },
                 constraints: table =>
                 {
@@ -113,25 +115,25 @@ namespace AuthenticationService.Migrations
                 });
 
             migrationBuilder.CreateTable(
-               name: "VideoFile",
-               columns: table => new
-               {
-                   VideoFileID = table.Column<int>(type: "int", nullable: false)
-                       .Annotation("SqlServer:Identity", "1, 1"),
-                   ProcedureID = table.Column<int>(type: "int", nullable: false),
-                   Filepath = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                   Filename = table.Column<string>(type: "nvarchar(max)", nullable: true)
-               },
-               constraints: table =>
-               {
-                   table.PrimaryKey("PK_VideoFile", x => x.VideoFileID);
-                   table.ForeignKey(
-                       name: "FK_Video_Procedure_ProcedureID",
-                       column: x => x.ProcedureID,
-                       principalTable: "Procedure",
-                       principalColumn: "ProcedureID",
-                       onDelete: ReferentialAction.Cascade);
-               });
+                name: "VideoFile",
+                columns: table => new
+                {
+                    VideoFileID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProcedureID = table.Column<int>(type: "int", nullable: false),
+                    Filepath = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Filename = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_VideoFile", x => x.VideoFileID);
+                    table.ForeignKey(
+                        name: "FK_VideoFile_Procedure_ProcedureID",
+                        column: x => x.ProcedureID,
+                        principalTable: "Procedure",
+                        principalColumn: "ProcedureID"
+                        );
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Medic_AuthenticationID",

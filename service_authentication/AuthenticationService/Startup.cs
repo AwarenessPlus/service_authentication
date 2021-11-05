@@ -74,8 +74,6 @@ namespace AuthenticationService
 
             app.UseCors();
 
-
-
             app.UseRouting();
 
             app.UseAuthentication();

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace AuthenticationService.DTO
+﻿namespace AuthenticationService.DTO
 {
     public class AuthDTO
     {
@@ -16,6 +11,12 @@ namespace AuthenticationService.DTO
         public AuthDTO()
         {
 
+        }
+
+        public AuthDTO(string userName, string password)
+        {
+            _userName = userName;
+            _password = password;
         }
     }
 }

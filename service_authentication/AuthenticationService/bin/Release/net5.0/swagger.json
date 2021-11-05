@@ -121,7 +121,7 @@
             "in": "body",
             "name": "body",
             "schema": {
-              "$ref": "#/definitions/MedicDTO"
+              "$ref": "#/definitions/MedicSignUpDTO"
             }
           }
         ],
@@ -193,7 +193,7 @@
         }
       }
     },
-    "MedicDTO": {
+    "MedicSignUpDTO": {
       "type": "object",
       "properties": {
         "firstName": {
@@ -201,10 +201,6 @@
         },
         "lastName": {
           "type": "string"
-        },
-        "age": {
-          "format": "int32",
-          "type": "integer"
         },
         "semester": {
           "format": "int32",
@@ -215,6 +211,10 @@
         },
         "authentication": {
           "$ref": "#/definitions/AuthDTO"
+        },
+        "birthDate": {
+          "format": "date-time",
+          "type": "string"
         }
       }
     },
@@ -237,9 +237,9 @@
         "lastName": {
           "type": "string"
         },
-        "age": {
-          "format": "int32",
-          "type": "integer"
+        "birthDate": {
+          "format": "date-time",
+          "type": "string"
         }
       }
     }

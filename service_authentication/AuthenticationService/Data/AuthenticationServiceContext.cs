@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using DomainModel;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace AuthenticationService.Data
 {
@@ -14,9 +9,19 @@ namespace AuthenticationService.Data
         {
         }
 
+        
+
         public DbSet<DomainModel.Authentication> Authentication { get; set; }
 
         public DbSet<DomainModel.Medic> Medic { get; set; }
+
+        public DbSet<DomainModel.Patient> Patient { get; set; }
+
+        public DbSet<DomainModel.Procedure> Procedure { get; set; }
+        public DbSet<DomainModel.User> User { get; set; }
+        public DbSet<DomainModel.VideoFile> VideoFile { get; set; }
+
+
 
     }
 }
