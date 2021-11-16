@@ -13,6 +13,7 @@ using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using AuthenticationService.DTO;
+using AuthenticationService.Services;
 
 namespace AuthenticationService.Controllers
 {
@@ -20,13 +21,11 @@ namespace AuthenticationService.Controllers
     [ApiController]
     public class AuthenticationsController : ControllerBase
     {
-        private readonly AuthenticationServiceContext _context;
-        private readonly IConfiguration _configuration;
-      
-        public AuthenticationsController(AuthenticationServiceContext context, IConfiguration config)
+        private readonly IAuthenticationServices _services;
+        public AuthenticationsController(IAuthenticationServices authenticationServices, AuthenticationServiceContext context, IConfiguration configuration)
         {
-            _context = context;
-            _configuration = config;
+            _services = authenticationServices;
+            _services.SetContextAndConfiguration(context, configuration);
         }
 
         // PING: api/Authentications
@@ -34,166 +33,129 @@ namespace AuthenticationService.Controllers
         [HttpGet("ping")]
         public ActionResult GetPing()
         {
-            return Ok(JsonConvert.SerializeObject("ping"));
+            try
+            {
+                _services.Ping();
+                return Ok(JsonConvert.SerializeObject("ping"));
+            }
+            catch (Exception)
+            {
+                return NotFound(JsonConvert.SerializeObject("Error while doing ping"));
+                throw;
+            }
         }
 
         // PUT: api/Authentications/{UserName}
         [Authorize]
         [HttpPut("{UserName}")]
-        public async Task<IActionResult> PutAuthentication(string UserName, AuthDTO authentication)
+        public async Task<ActionResult> PutAuthentication(string UserName, AuthDTO authentication)
         {
-            if (UserName != authentication.UserName)
-            {
-                return BadRequest();
-            }
-
-            var authentication1 = _context.Authentication.First(e => e.UserName == authentication.UserName);
-            
-            if (authentication1 == null)
-            {
-                return NotFound();
-            }
-            else
-            {
-                authentication1.Password = authentication.Password;
-                authentication1.EncryptPassword(authentication1.Password);
-            }
-
-            _context.Entry(authentication1).State = EntityState.Modified;
-
             try
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!AuthenticationExists(UserName))
+                var response = await _services.PutAuthentication(UserName, authentication);
+                if (response == 400)
                 {
-                    return NotFound();
+                    return BadRequest(JsonConvert.SerializeObject("UserName does not match, try again!"));
+                }
+                else if (response == 404)
+                {
+                    return NotFound(JsonConvert.SerializeObject("User not exist!"));
+                }
+                else if (response == 204)
+                {
+                    return NoContent();
                 }
                 else
                 {
-                    throw;
+                    return BadRequest();
                 }
             }
-
-            return NoContent();
+            catch (Exception)
+            {
+                return BadRequest(JsonConvert.SerializeObject("Error during authentication, try again later"));
+                throw;
+            }
         }
 
         // POST: api/Authentications/auth
 
         [HttpPost("Auth")]
-        public ActionResult<Authentication> PostAuth(AuthDTO authDTO)
+        public ActionResult PostAuth(AuthDTO authDTO)
         {
-            Authentication authentication = new();
-            authentication.UserName = authDTO.UserName;
-            authentication.Password = authDTO.Password;
-            authentication.EncryptPassword(authentication.Password);
-            var auth = _context.Authentication.FirstOrDefault(i => i.UserName == authentication.UserName);
-            if (auth == null)
+            try
             {
-                return NotFound();
-            }
-            else
-            {
-                if (auth.Password.Equals(authentication.Password))
+                var result = _services.PostAuthentication(authDTO);
+
+                if (result.Equals("NotFound"))
                 {
-                    var secretKey = _configuration.GetValue<String>("AppSecretKey");
-                    var key = Encoding.ASCII.GetBytes(secretKey);
-
-                    var claims = new ClaimsIdentity();
-                    claims.AddClaim(new Claim(ClaimTypes.NameIdentifier, authentication.UserName));
-
-                    var tokenDescriptor = new SecurityTokenDescriptor
-                    {
-                        Subject = claims,
-                        Expires = DateTime.UtcNow.AddHours(1),
-                        SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-                    };
-
-                    var tokenHandler = new JwtSecurityTokenHandler();
-                    var createdToken = tokenHandler.CreateToken(tokenDescriptor);
-                    string bearer_token = tokenHandler.WriteToken(createdToken);
-
-                    return Ok(JsonConvert.SerializeObject(bearer_token));
+                    return Unauthorized(JsonConvert.SerializeObject("Username or Password Incorrect!"));
+                }
+                else if (result.Equals("Unauthorized"))
+                {
+                    return Unauthorized(JsonConvert.SerializeObject("Username or Password Incorrect!"));
                 }
                 else
                 {
-                    return Unauthorized();
+                    return Ok(JsonConvert.SerializeObject(result));
                 }
+
+
             }
+            catch (Exception)
+            {
+                return BadRequest(JsonConvert.SerializeObject("Error during authentication, try again later"));
+                throw;
+            }
+
         }
 
         // DELETE: api/Authentications/{UserName}
         [Authorize]
         [HttpDelete("{UserName}")]
-        public async Task<IActionResult> DeleteAuthentication(string UserName)
+        public async Task<ActionResult> DeleteAuthentication(string UserName)
         {
-            var authentication = _context.Authentication.First(e => e.UserName == UserName);
-            if (authentication == null)
+            try
             {
-                return NotFound();
+                var result = await _services.DeleteAuthentication(UserName);
+                if (result)
+                {
+                    return NoContent();
+                }
+                else
+                {
+                    return NotFound(JsonConvert.SerializeObject("User with username: " + UserName + " Does not exist!"));
+                }
             }
-
-            _context.Authentication.Remove(authentication);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            catch (Exception)
+            {
+                return BadRequest(JsonConvert.SerializeObject("Bad Request, try again later"));
+                throw;
+            }
         }
 
         // POST: api/Authentications/SignUp
 
         [HttpPost("SignUp")]
-        public async Task<ActionResult<Medic>> PostMedic(MedicSignUpDTO medic)
+        public async Task<ActionResult> PostMedic(MedicSignUpDTO medic)
         {
-            Medic newMedic = new();
-            User newUser = new();
-            Authentication newAuthentication = new();
-            newAuthentication.UserName = medic.Authentication.UserName;
-            newAuthentication.Password = medic.Authentication.Password;
-            if (_context.Authentication.Any(e => e.UserName == newAuthentication.UserName))
+            try
             {
-                return Conflict(JsonConvert.SerializeObject("User Already Exist"));
+                var result = await _services.SignUp(medic);
+                if (result.Equals("Conflict"))
+                {
+                    return Conflict(JsonConvert.SerializeObject("User Already Exist!"));
+                }
+                else
+                {
+                    return Ok(JsonConvert.SerializeObject(result));
+                }
             }
-            string[] firsName = medic.FirstName.Split(' ');
-            string[] lastName = medic.LastName.Split(' ');
-            newUser.FirstName = firsName[0];
-            newUser.SecondName = firsName[1];
-            newUser.Surname = lastName[0];
-            newUser.LastName = lastName[1];
-            newUser.BirthDate = medic.BirthDate;
-            newMedic.MedicData = newUser;
-            newMedic.Rotation = medic.Rotation;
-            newMedic.Semester = medic.Semester;
-            newMedic.AuthenticationData = newAuthentication;
-            newMedic.AuthenticationData.EncryptPassword(newMedic.AuthenticationData.Password);
-            _context.Medic.Add(newMedic);
-            await _context.SaveChangesAsync();
-            //Construct The Bearer JSON Web Token
-            var secretKey = _configuration.GetValue<String>("AppSecretKey");
-            var key = Encoding.ASCII.GetBytes(secretKey);
-
-            var claims = new ClaimsIdentity();
-            claims.AddClaim(new Claim(ClaimTypes.NameIdentifier, newMedic.AuthenticationData.UserName));
-
-            var tokenDescriptor = new SecurityTokenDescriptor
+            catch (Exception)
             {
-                Subject = claims,
-                Expires = DateTime.UtcNow.AddHours(1),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-            };
+                return NotFound(JsonConvert.SerializeObject("Service has an internal error, try again later!"));
+                throw;
 
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var createdToken = tokenHandler.CreateToken(tokenDescriptor);
-            string bearer_token = tokenHandler.WriteToken(createdToken);
-
-            return Ok(JsonConvert.SerializeObject(bearer_token));
-
-        }
-
-        private bool AuthenticationExists(string UserName)
-        {
-            return _context.Authentication.Any(e => e.UserName == UserName);
+            }
         }
     }
 }
