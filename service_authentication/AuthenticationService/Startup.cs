@@ -9,6 +9,7 @@ using AuthenticationService.Data;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using AuthenticationService.Services;
 
 namespace AuthenticationService
 {
@@ -24,6 +25,8 @@ namespace AuthenticationService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IAuthenticationServices, AuthenticationServices>();
+            IAuthenticationServices instance = new AuthenticationServices();
             var key = Encoding.ASCII.GetBytes(Configuration.GetValue<string>("AppSecretKey"));
 
             services.AddCors(options =>
@@ -60,6 +63,8 @@ namespace AuthenticationService
             });
             services.AddDbContext<AuthenticationServiceContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("AuthenticationServiceContext")));
+
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
