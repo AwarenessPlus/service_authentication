@@ -5,9 +5,9 @@ The service exposes the followings endpoins:
 
 ## Endpoints
 
-###  Heath Status
+###  Ping
 
- >  /health-status 
+ > PING /api/authentications/ping
 
 This endpoint allows the client proof if the service are working goood.
 
