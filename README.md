@@ -57,9 +57,9 @@ you need to downlowad or check the following things depending on your developmen
 
 You need install the following NuGets for work properly: 
 
-* Microsoft.EntityFrameworkCore [from Microsoft] (https://www.nuget.org/packages/Microsoft.EntityFrameworkCore/)
-* System.IdentityModel.Tokens.JWT [from .NET] (https://www.nuget.org/packages/System.IdentityModel.Tokens.Jwt/)
-* Microsoft.AspNetCore.Authentication.JwtBearer [from ASP.NET Core] (https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.JwtBearer/)
+* Microsoft.EntityFrameworkCore [from Microsoft](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore/)
+* System.IdentityModel.Tokens.JWT [from .NET](https://www.nuget.org/packages/System.IdentityModel.Tokens.Jwt/)
+* Microsoft.AspNetCore.Authentication.JwtBearer [from ASP.NET Core](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.JwtBearer/)
 * Swashbuckle.AspNetCore [from domaindrivendev ](https://www.nuget.org/packages/Swashbuckle.AspNetCore/5.6.3?_src=template)
 * System.Drawing.Common [ from Microsoft ](https://www.nuget.org/packages/System.Drawing.Common/5.0.2?_src=template )
 
